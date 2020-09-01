@@ -52,7 +52,9 @@ Apify.main(async () => {
     });
 
     // Save the screenshot to the default key-value store
-    await Apify.setValue('open-graph-image', screenshot, { contentType: `image/${input.type}` });
+    const store = await Apify.openKeyValueStore('RESULT');
+    await store.setValue('RESULT', { screenshot: 'Captured!' });
+    await Apify.setValue('og-image', screenshot, { contentType: `image/${input.type}` });
 
     // Close Puppeteer
     log.info('Done.');

@@ -30,7 +30,7 @@
         "quality": {
             "title": "Screenshot quality",
             "type": "integer",
-            "description": "If the screenshot is in JPEG format, you can choose its quality, from 0-100.",
+            "description": "If the screenshot is in JPEG format, you can choose its quality, from 1-100.",
             "editor": "number",
             "prefill": 90,
             "maximum": 100,
