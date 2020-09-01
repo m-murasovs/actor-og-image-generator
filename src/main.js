@@ -46,13 +46,13 @@ Apify.main(async () => {
             width: screenshotCoordinates.width - 150,
             height: screenshotCoordinates.height
         },
-        type: input.format,
-        quality: input.format === 'png' ? null : input.quality,
+        type: input.type,
+        quality: input.type === 'png' ? null : input.quality,
         omitBackground: input.omitBackground,
     });
 
     // Save the screenshot to the default key-value store
-    await Apify.setValue('open-graph-image', screenshot, { contentType: `image/${input.format}` });
+    await Apify.setValue('open-graph-image', screenshot, { contentType: `image/${input.type}` });
 
     // Close Puppeteer
     log.info('Done.');

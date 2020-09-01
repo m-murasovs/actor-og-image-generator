@@ -11,7 +11,7 @@
             "editor": "textfield",
             "prefill": "https://apify.com/apify/screenshot-url"
         },
-        "format": {
+        "type": {
             "title": "Image format",
             "type": "string",
             "description": "Choose whether you want the image to be in JPEG or PNG format",
