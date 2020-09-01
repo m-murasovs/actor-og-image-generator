@@ -19,12 +19,12 @@
             "prefill": "jpeg",
             "default": "jpeg",
             "enum": [
-                "png",
-                "jpeg"
+                "jpeg",
+                "png"
             ],
             "enumTitles": [
-                "PNG",
-                "JPEG"
+                "JPEG",
+                "PNG"
             ]
         },
         "quality": {
