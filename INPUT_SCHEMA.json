@@ -17,7 +17,7 @@
             "description": "Choose whether you want the image to be in JPEG or PNG format",
             "editor": "select",
             "prefill": "jpeg",
-            "default": "JPEG",
+            "default": "jpeg",
             "enum": [
                 "png",
                 "jpeg"
