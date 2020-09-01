@@ -11,20 +11,20 @@
             "editor": "textfield",
             "prefill": "https://apify.com/apify/screenshot-url"
         },
-        "type": {
-            "title": "Type of image",
+        "format": {
+            "title": "Image format",
             "type": "string",
             "description": "Choose whether you want the image to be in JPEG or PNG format",
             "editor": "select",
             "prefill": "jpeg",
-            "default": "jpeg",
+            "default": "JPEG",
             "enum": [
                 "png",
                 "jpeg"
             ],
             "enumTitles": [
-                "JPEG",
-                "PNG"
+                "PNG",
+                "JPEG"
             ]
         },
         "quality": {
@@ -54,7 +54,7 @@
         }
     },
     "required": [
-        "type",
-        "actorUrl"
+        "actorUrl",
+        "type"
     ]
 }
