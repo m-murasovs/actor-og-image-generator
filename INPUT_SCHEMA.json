@@ -1,0 +1,58 @@
+{
+  "title": "OG Image Generator",
+  "description": "Takes a screenshot of an Apify actor's detail page, and generates a nice image for sharing.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "actorUrl": {
+      "title": "Actor URL",
+      "type": "string",
+      "description": "The Apify Store URL of the actor for which you want to generate an Open Graph image",
+      "editor": "textfield",
+      "prefill": "https://apify.com/apify/screenshot-url"
+    },
+    "type": {
+      "title": "Type of image",
+      "type": "string",
+      "description": "Choose whether you want the image to be in JPEG or PNG format",
+      "editor": "select",
+      "prefill": "png",
+      "enum": [
+        "png",
+        "jpeg"
+      ],
+      "enumTitles": [
+        "JPEG",
+        "PNG"
+      ]
+    },
+    "quality": {
+      "title": "Screenshot quality",
+      "type": "integer",
+      "description": "If the screenshot is in JPEG format, you can choose its quality, from 0-100.",
+      "editor": "number",
+      "prefill": 90,
+      "maximum": 100
+    },
+    "omitBackground": {
+      "title": "Omit background",
+      "type": "boolean",
+      "description": "Ignore the screenshot's background",
+      "editor": "checkbox"
+    },
+    "scale": {
+      "title": "Image scale",
+      "type": "integer",
+      "description": "Depending on the size of image you need, adjust the scale",
+      "editor": "number",
+      "prefill": 2,
+      "maximum": 5,
+      "minimum": 1
+    }
+  },
+  "required": [
+    "scale",
+    "type",
+    "actorUrl"
+  ]
+}
