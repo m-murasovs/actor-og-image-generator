@@ -27,16 +27,6 @@
                 "PNG"
             ]
         },
-        "quality": {
-            "title": "Screenshot quality",
-            "type": "integer",
-            "description": "If the screenshot is in JPEG format, you can choose its quality, from 1-100.",
-            "editor": "number",
-            "prefill": 90,
-            "maximum": 100,
-            "minimum": 1,
-            "nullable": true
-        },
         "omitBackground": {
             "title": "Omit background",
             "type": "boolean",

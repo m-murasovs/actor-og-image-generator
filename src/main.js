@@ -47,7 +47,6 @@ Apify.main(async () => {
             height: screenshotCoordinates.height
         },
         type: input.type,
-        quality: input.type === 'png' ? null : input.quality,
         omitBackground: input.omitBackground,
     });
 
