@@ -52,8 +52,7 @@ Apify.main(async () => {
     });
 
     // Save the screenshot to the default key-value store
-    const store = await Apify.openKeyValueStore('RESULT');
-    await store.setValue('RESULT', { screenshot: 'Captured!' });
+    await Apify.pushData({ status: 'Success! The image is in the run\'s key-value store.' });
     await Apify.setValue('og-image', screenshot, { contentType: `image/${input.type}` });
 
     // Close Puppeteer
