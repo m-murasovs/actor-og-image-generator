@@ -12,8 +12,8 @@ Apify.main(async () => {
     const detailPage = await browser.newPage();
 
     await detailPage.setViewport({
-        width: 1024,
-        height: 768,
+        width: 1920,
+        height: 1080,
         deviceScaleFactor: input.scale,
     });
 
@@ -31,7 +31,6 @@ Apify.main(async () => {
     const authorPicture = await detailPage.evaluate(() => document.querySelector('.Content__AuthorWrap-sc-1r0kza0-1 > a > img').src );
 
     const authorLink = await detailPage.evaluate(() => document.querySelector('.Content__AuthorWrap-sc-1r0kza0-1 > a').href );
-
 
     // Navigate to author page to get full name
     const authorPage = await browser.newPage();
@@ -58,6 +57,7 @@ Apify.main(async () => {
         titleText.innerText = actorTitle;
         
         const authorInfoContainer = document.createElement('div');
+        const authorInfoSpan = document.createElement('span');
         const authorImg = document.createElement('img');
         const authorName = document.createElement('p');
         const actorCodeTitle = document.createElement('p');
@@ -72,14 +72,14 @@ Apify.main(async () => {
         // Set background of Apify branding
         // TODO find a way to use local images or store the image on GitHub then use direct link
         backgroundContainer.setAttribute('style', `
-            background-image: url("./background.png");
+            background-image: url("https://github.com/m-murasovs/actor-og-image-generator/blob/generate-html/src/background.png");
             object-fit: contain;
             background-position: 100% 100%;
             display: grid;
             grid-template-columns: 25% 75%;
             width: 100%;
             height: 100%;
-            font-family: Graphik;
+            font-family: Graphik-regular;
         `);
         
         imageContainer.setAttribute('style', `
@@ -89,15 +89,15 @@ Apify.main(async () => {
         `);
 
         actorImageCircle.setAttribute('style', `
-            margin: 60% auto;
-            width: 11rem;
-            height: 11rem;
+            margin: 70% auto;
+            width: 13rem;
+            height: 13rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: rgb(255, 255, 255);
-            box-shadow: rgba(0, 29, 93, 0.2) 0px 4px 8px 0px;
+            box-shadow: rgba(0, 29, 93, 0.2) 10px 10px 24px -4px;
             overflow: hidden;
         `);
         
@@ -109,16 +109,17 @@ Apify.main(async () => {
             width: 100%;
             height: 100%;
             display: grid;
-            grid-template-rows: 2fr 1fr 2fr;
+            grid-template-rows: 2fr 1.2fr 1.5fr;
         `);
         
         titleContainer.setAttribute('style', `
             display: flex;
-            align-items: end;
+            align-items: flex-end;
         `);
         
         titleText.setAttribute('style', `
-            font-size: 4.3rem;
+            font-size: 4.6rem;
+            font-weight: 600;
             margin: 0;
             padding: 0;
         `);
@@ -127,18 +128,33 @@ Apify.main(async () => {
             width: 100%;
             height: 100%;
             display: grid;
+            font-size: 2rem;
+            align-items: center;
+        `);
+        
+        authorInfoSpan.setAttribute('style', `
+            display: flex;
+            height: 3rem;
+        `);
+        
+        authorName.setAttribute('style', `
+            font-weight: 600;
+            padding: 0;
+            margin: 0;
         `);
 
         authorImg.setAttribute('style', `
-            width: 2.4rem;
+            width: 3rem;
             border-radius: 50%;
             display: inline-block;
-            margin-right: 1rem;
+            margin: 0 1rem 0 1rem;
+            padding: 0;
         `);
 
         tryButton.setAttribute('style', `
             white-space: nowrap;
             padding: 1.5rem 3rem;
+            margin-top: 2rem;
             transition-property: background-color;
             transition-duration: 0.3s;
             transition-timing-function: ease-in-out;
@@ -146,15 +162,12 @@ Apify.main(async () => {
             border-radius: 1rem;
             border: 0px none;
             font-weight: 500;
-            display: inline-block;
             align-items: center;
             vertical-align: text-bottom;
             cursor: pointer;
             font-size: 2rem;
             width: auto;
             text-align: center;
-            position: relative;
-            top: 0px;
             background: rgb(20, 128, 255) none repeat scroll 0% 0%;
             color: rgb(255, 255, 255);
         `);
@@ -165,7 +178,8 @@ Apify.main(async () => {
         titleContainer.append(titleText);
         imageContainer.append(actorImageCircle);
         actorImageCircle.append(actorCoverImg);
-        authorInfoContainer.append(actorCodeTitle, authorName, authorImg);
+        authorInfoContainer.append(actorCodeTitle, authorInfoSpan);
+        authorInfoSpan.append(authorName, authorImg);
         tryButtonContainer.append(tryButton);
 
     }, 
