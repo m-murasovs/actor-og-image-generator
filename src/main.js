@@ -80,7 +80,7 @@ Apify.main(async () => {
         
         // Set styles for the elements
         backgroundContainer.setAttribute('style', `
-            background-image: url("https://raw.githubusercontent.com/m-murasovs/actor-og-image-generator/master/src/background/background-smaller.png");
+            background-image: url("/background/background-smaller.png");
             padding: 0;
             margin: 0;
             background-position: 90% 90%;
