@@ -1,4 +1,4 @@
-# Open graph image generator
+# Open Graph (OG) image generator
 
 This actor is for sharing Apify actors on social media. It takes a screenshot of the actor's detail page (with a couple of omissions) and returns a JPEG or PNG image.
 
