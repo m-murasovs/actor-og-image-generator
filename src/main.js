@@ -72,7 +72,7 @@ Apify.main(async () => {
         // Set background of Apify branding
         // TODO find a way to use local images or store the image on GitHub then use direct link
         backgroundContainer.setAttribute('style', `
-            background-image: url("https://github.com/m-murasovs/actor-og-image-generator/blob/generate-html/src/background.png");
+            background-image: url("https://github.com/m-murasovs/actor-og-image-generator/blob/generate-html/src/background-smaller.png");
             object-fit: contain;
             background-position: 100% 100%;
             display: grid;
