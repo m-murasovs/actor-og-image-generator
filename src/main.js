@@ -80,7 +80,7 @@ Apify.main(async () => {
         
         // Set styles for the elements
         backgroundContainer.setAttribute('style', `
-            background-image: url("/background/background-smaller.png");
+            background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1280px-Google_2015_logo.svg.png");
             padding: 0;
             margin: 0;
             background-position: 90% 90%;
