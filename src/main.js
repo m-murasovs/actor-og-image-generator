@@ -47,7 +47,7 @@ Apify.main(async () => {
         var link = document.createElement('link'); 
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'http://fonts.googleapis.com/css?family=Droid+Sans';
+        link.href = '/Graphik-Regular.otf';
         head.appendChild(link);
         
         // Create the elements
@@ -88,7 +88,7 @@ Apify.main(async () => {
             grid-template-columns: 25% 75%;
             width: 100%;
             height: 100%;
-            font-family: Droid-sans, sans-serif;
+            font-family: Graphik-regular, sans-serif;
         `);
         
         imageContainer.setAttribute('style', `
@@ -127,7 +127,7 @@ Apify.main(async () => {
         `);
         
         titleText.setAttribute('style', `
-            font-size: 6rem;
+            font-size: 7rem;
             font-weight: 600;
             margin: 0;
             padding: 0;
@@ -141,7 +141,7 @@ Apify.main(async () => {
         
         actorCodeTitle.setAttribute('style', `
             padding: 0;
-            margin: 1.5rem 0 1rem 0;
+            margin: 2.5rem 0 1rem 0;
         `);
 
         authorNameAndImageContainer.setAttribute('style', `
