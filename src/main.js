@@ -72,9 +72,9 @@ Apify.main(async () => {
         // Set background of Apify branding
         // TODO find a way to use local images or store the image on GitHub then use direct link
         backgroundContainer.setAttribute('style', `
-            background-image: url("https://github.com/m-murasovs/actor-og-image-generator/blob/generate-html/src/background-smaller.png");
-            object-fit: contain;
-            background-position: 100% 100%;
+            background-image: url("https://raw.githubusercontent.com/m-murasovs/actor-og-image-generator/master/src/background-smaller.png");
+            object-fit: scale-down;
+            background-position: 90% 90%;
             display: grid;
             grid-template-columns: 25% 75%;
             width: 100%;
@@ -127,11 +127,14 @@ Apify.main(async () => {
         authorInfoContainer.setAttribute('style', `
             width: 100%;
             height: 100%;
-            display: grid;
             font-size: 2rem;
-            align-items: center;
         `);
         
+        actorCodeTitle.setAttribute('style', `
+            padding: 0;
+            margin: 1.5rem 0 1rem 0;
+        `);
+
         authorInfoSpan.setAttribute('style', `
             display: flex;
             height: 3rem;
