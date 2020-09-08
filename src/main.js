@@ -38,7 +38,6 @@ Apify.main(async () => {
     await authorPage.goto(authorLink);
     const authorFullName = await authorPage.evaluate(() => document.querySelector('.Text__H2-sc-1f839r4-1').innerText );
 
-
     // Generate HTML for the screenshot
     const resultPage = await browser.newPage();
     
@@ -67,7 +66,9 @@ Apify.main(async () => {
         
         const tryButtonContainer = document.createElement('div');
         const tryButton = document.createElement('button');
-        tryButton.innerText = 'Try for free';
+        const buttonText = document.createElement('span');
+        buttonText.innerText = 'Try for free';
+        tryButton.innerHTML = '<svg viewBox="0 0 448 512" width="0.7em" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="sc-AxjAm fepPFp"><path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path></svg>';
         
         // Set background of Apify branding
         // TODO find a way to use local images or store the image on GitHub then use direct link
@@ -156,6 +157,7 @@ Apify.main(async () => {
         `);
 
         tryButton.setAttribute('style', `
+            display: flex;
             white-space: nowrap;
             padding: 1.5rem 3rem;
             margin-top: 2rem;
@@ -167,13 +169,17 @@ Apify.main(async () => {
             border: 0px none;
             font-weight: 500;
             align-items: center;
-            vertical-align: text-bottom;
             cursor: pointer;
             font-size: 2rem;
             width: auto;
             text-align: center;
-            background: rgb(20, 128, 255) none repeat scroll 0% 0%;
+            background: rgb(151, 215, 0) none repeat scroll 0% 0%;
             color: rgb(255, 255, 255);
+        `);
+
+        buttonText.setAttribute('style', `
+            padding: 0;
+            margin: 0 0 0 0.5rem;
         `);
         
         document.body.appendChild(backgroundContainer);
@@ -185,6 +191,7 @@ Apify.main(async () => {
         authorInfoContainer.append(actorCodeTitle, authorInfoSpan);
         authorInfoSpan.append(authorName, authorImg);
         tryButtonContainer.append(tryButton);
+        tryButton.append(buttonText);
 
     }, 
         actorTitle,
@@ -193,44 +200,16 @@ Apify.main(async () => {
         authorPicture,
         authorFullName
     );
-    
-
-    
-
-
-
 
     const screenshot = await resultPage.screenshot()
 
-
-    // Get box coordinates
-    // const screenshotCoordinates = await page.evaluate(() => {
-
-    //     const { x, y, width, height } = document.querySelector('.og-image-section').getBoundingClientRect();
-
-    //     return { x, y, width, height };
-    // });
-
     // Capture the screenshot
     log.info('Capturing screenshot.');
-    // const screenshot = await page.screenshot({
-    //     // Adjust width to eliminate whitespace on the right
-    //     clip: {
-    //         x: screenshotCoordinates.x,
-    //         y: screenshotCoordinates.y,
-    //         width: screenshotCoordinates.width -150,
-    //         height: screenshotCoordinates.height
-    //     },
-    //     type: input.type,
-    //     omitBackground: input.omitBackground,
-    // });
 
     // Add a message to dataset to show that process was successful
     await Apify.pushData({ status: 'Success! The image is in the run\'s key-value store.' });
     // Save the screenshot to the default key-value store
     await Apify.setValue('OUTPUT', screenshot, { contentType: `image/${input.type}` });
-
-    
 
     // Close Puppeteer
     log.info('Done.');
