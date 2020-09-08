@@ -73,7 +73,8 @@ Apify.main(async () => {
         // TODO find a way to use local images or store the image on GitHub then use direct link
         backgroundContainer.setAttribute('style', `
             background-image: url("https://raw.githubusercontent.com/m-murasovs/actor-og-image-generator/master/src/background-smaller.png");
-            object-fit: scale-down;
+            padding: 0;
+            margin: 0;
             background-position: 90% 90%;
             display: grid;
             grid-template-columns: 25% 75%;
