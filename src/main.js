@@ -56,7 +56,7 @@ Apify.main(async () => {
         titleText.innerText = actorTitle;
         
         const authorInfoContainer = document.createElement('div');
-        const authorInfoSpan = document.createElement('span');
+        const authorNameAndImageContainer = document.createElement('span');
         const authorImg = document.createElement('img');
         const authorName = document.createElement('p');
         const actorCodeTitle = document.createElement('p');
@@ -73,7 +73,7 @@ Apify.main(async () => {
         // Set background of Apify branding
         // TODO find a way to use local images or store the image on GitHub then use direct link
         backgroundContainer.setAttribute('style', `
-            background-image: url("https://raw.githubusercontent.com/m-murasovs/actor-og-image-generator/master/src/background-smaller.png");
+            background-image: url("https://raw.githubusercontent.com/m-murasovs/actor-og-image-generator/master/src/background/background-smaller.png");
             padding: 0;
             margin: 0;
             background-position: 90% 90%;
@@ -91,7 +91,7 @@ Apify.main(async () => {
         `);
 
         actorImageCircle.setAttribute('style', `
-            margin: 40% auto;
+            margin: 45% auto;
             width: 13rem;
             height: 13rem;
             border-radius: 50%;
@@ -121,7 +121,7 @@ Apify.main(async () => {
         
         titleText.setAttribute('style', `
             font-size: 6rem;
-            font-weight: 600;
+            font-weight: 500;
             margin: 0;
             padding: 0;
         `);
@@ -137,13 +137,14 @@ Apify.main(async () => {
             margin: 1.5rem 0 1rem 0;
         `);
 
-        authorInfoSpan.setAttribute('style', `
+        authorNameAndImageContainer.setAttribute('style', `
             display: flex;
+            align-items: center;
             height: 4rem;
         `);
         
         authorName.setAttribute('style', `
-            font-weight: 600;
+            font-weight: 500;
             padding: 0;
             margin: 0;
         `);
@@ -188,8 +189,8 @@ Apify.main(async () => {
         titleContainer.append(titleText);
         imageContainer.append(actorImageCircle);
         actorImageCircle.append(actorCoverImg);
-        authorInfoContainer.append(actorCodeTitle, authorInfoSpan);
-        authorInfoSpan.append(authorName, authorImg);
+        authorInfoContainer.append(actorCodeTitle, authorNameAndImageContainer);
+        authorNameAndImageContainer.append(authorName, authorImg);
         tryButtonContainer.append(tryButton);
         tryButton.append(buttonText);
 
