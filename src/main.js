@@ -91,7 +91,7 @@ Apify.main(async () => {
         `);
 
         actorImageCircle.setAttribute('style', `
-            margin: 70% auto;
+            margin: 40% auto;
             width: 13rem;
             height: 13rem;
             border-radius: 50%;
@@ -104,14 +104,14 @@ Apify.main(async () => {
         `);
         
         actorCoverImg.setAttribute('style', `
-            width: 7rem !important;
+            width: 8rem !important;
         `);
         
         descriptionContainer.setAttribute('style', `
             width: 100%;
             height: 100%;
             display: grid;
-            grid-template-rows: 2fr 1.2fr 1.5fr;
+            grid-template-rows: 1fr 1fr 1fr;
         `);
         
         titleContainer.setAttribute('style', `
@@ -120,7 +120,7 @@ Apify.main(async () => {
         `);
         
         titleText.setAttribute('style', `
-            font-size: 4.6rem;
+            font-size: 6rem;
             font-weight: 600;
             margin: 0;
             padding: 0;
@@ -129,7 +129,7 @@ Apify.main(async () => {
         authorInfoContainer.setAttribute('style', `
             width: 100%;
             height: 100%;
-            font-size: 2rem;
+            font-size: 2.5rem;
         `);
         
         actorCodeTitle.setAttribute('style', `
@@ -139,7 +139,7 @@ Apify.main(async () => {
 
         authorInfoSpan.setAttribute('style', `
             display: flex;
-            height: 3rem;
+            height: 4rem;
         `);
         
         authorName.setAttribute('style', `
@@ -149,7 +149,7 @@ Apify.main(async () => {
         `);
 
         authorImg.setAttribute('style', `
-            width: 3rem;
+            width: 4rem;
             border-radius: 50%;
             display: inline-block;
             margin: 0 1rem 0 1rem;
@@ -159,13 +159,13 @@ Apify.main(async () => {
         tryButton.setAttribute('style', `
             display: flex;
             white-space: nowrap;
-            padding: 1.5rem 3rem;
-            margin-top: 2rem;
+            padding: 2rem 3.5rem;
+            margin-top: 1rem;
             transition-property: background-color;
             transition-duration: 0.3s;
             transition-timing-function: ease-in-out;
             opacity: 1;
-            border-radius: 1rem;
+            border-radius: 0.7rem;
             border: 0px none;
             font-weight: 500;
             align-items: center;
