@@ -81,7 +81,7 @@ Apify.main(async () => {
             grid-template-columns: 25% 75%;
             width: 100%;
             height: 100%;
-            font-family: Graphik-regular;
+            font-family: Graphik, sans-serif;
         `);
         
         imageContainer.setAttribute('style', `
@@ -170,7 +170,7 @@ Apify.main(async () => {
             font-weight: 500;
             align-items: center;
             cursor: pointer;
-            font-size: 2rem;
+            font-size: 2.5rem;
             width: auto;
             text-align: center;
             background: rgb(151, 215, 0) none repeat scroll 0% 0%;
