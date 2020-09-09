@@ -1,5 +1,27 @@
 # Open Graph (OG) image generator
 
-This actor is for sharing Apify actors on social media. It takes a screenshot of the actor's detail page (with a couple of omissions) and returns a JPEG or PNG image.
+This actor is for sharing Apify actors on social media. 
 
-Just enter the actor's URL into the input and find the image in the default key-value store.
+## How it works
+
+1. Scrapes actor images and information.
+
+2. Scrapes the author's picture and full name. 
+
+3. Generates an HTML page and lays out the information in a nice card format.
+
+4. Takes a screenshot and saves it in JPEG or PNG format.
+
+## Input 
+
+Just enter the actor's URL into the input.
+
+You can pick JPEG or PNG format.
+
+Depending on the size of image you need, adjust the image scale accordingly.
+
+## Output
+
+The finished product will be in the default key-value store. 
+
+If you're checking it right after the actor run, you may need to press the refresh button if you can't see the image.
