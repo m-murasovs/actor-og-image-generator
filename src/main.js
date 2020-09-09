@@ -86,6 +86,8 @@ Apify.main(async () => {
         // Set styles for the elements
         document.body.setAttribute('style', `
             overflow: hidden;
+            padding: 0;
+            margin: 0;
         `);
 
         backgroundContainer.setAttribute('style', `
@@ -141,7 +143,7 @@ Apify.main(async () => {
         `);
 
         actorTitleText.setAttribute('style', `
-            font-size: 5rem;
+            font-size: 4.5rem;
             font-weight: 600;
             margin: 15% 0 2rem 0;
             padding: 0;
@@ -183,7 +185,7 @@ Apify.main(async () => {
             display: flex;
             white-space: nowrap;
             padding: 2rem 3.5rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
             transition-property: background-color;
             transition-duration: 0.3s;
             transition-timing-function: ease-in-out;
