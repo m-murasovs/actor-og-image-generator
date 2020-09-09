@@ -68,7 +68,7 @@ Apify.main(async () => {
         actorTitleText.innerText = actorTitle;
         
         const authorInfoContainer = document.createElement('div');
-        const actorCodeTitle = document.createElement('p');
+        const actorCodeTitle = document.createElement('div');
         const authorNameAndImageContainer = document.createElement('span');
         const authorProfileImage = document.createElement('img');
         const authorName = document.createElement('p');
@@ -84,18 +84,23 @@ Apify.main(async () => {
         tryButton.innerHTML = '<svg viewBox="0 0 448 512" width="0.7em" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="sc-AxjAm fepPFp"><path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path></svg>';
         
         // Set styles for the elements
+        document.body.setAttribute('style', `
+            overflow: hidden;
+        `);
+
         backgroundContainer.setAttribute('style', `
             background: linear-gradient(128deg, rgba(2,0,36,1) 0%, rgba(240,248,254,1) 0%, rgba(255,255,255,1) 100%);
-            padding: 0;
+            padding: 0 0 0 1rem;
             margin: 0;
             background-position: 90% 90%;
             display: grid;
             grid-template-columns: 25% 75%;
             width: 100%;
             height: 100%;
-            font-family: Graphik-regular, sans-serif;
+            font-family: Graphik, sans-serif;
+            font-size: 2rem;
         `);
-        
+
         logo.setAttribute('style', `
             position: absolute;
             right: 6rem;
@@ -111,8 +116,8 @@ Apify.main(async () => {
 
         actorImageCircle.setAttribute('style', `
             margin: 45% auto;
-            width: 13rem;
-            height: 13rem;
+            width: 12rem;
+            height: 12rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -121,47 +126,45 @@ Apify.main(async () => {
             box-shadow: rgba(0, 29, 93, 0.2) 10px 10px 24px -4px;
             overflow: hidden;
         `);
-        
+
         actorCoverImage.setAttribute('style', `
-            width: 8rem !important;
+            width: 6rem !important;
         `);
-        
+
         actorDescriptionContainer.setAttribute('style', `
-            width: 100%;
-            height: 100%;
-            display: grid;
-            grid-template-rows: 1fr 1fr 1fr;
-        `);
-        
-        actorTitleContainer.setAttribute('style', `
-            display: flex;
-            align-items: flex-end;
-        `);
-        
-        actorTitleText.setAttribute('style', `
-            font-size: 7rem;
-            font-weight: 600;
+            padding 0;
             margin: 0;
+        `);
+
+        actorTitleContainer.setAttribute('style', `
+            padding-right: 2.5rem;
+        `);
+
+        actorTitleText.setAttribute('style', `
+            font-size: 5rem;
+            font-weight: 600;
+            margin: 15% 0 2rem 0;
             padding: 0;
+            line-height: 0.9;
         `);
 
         authorInfoContainer.setAttribute('style', `
             width: 100%;
             height: 100%;
-            font-size: 2rem;
         `);
-        
+
         actorCodeTitle.setAttribute('style', `
             padding: 0;
-            margin: 2.5rem 0 1rem 0;
+            margin: 3rem 0 1rem 0;
         `);
 
         authorNameAndImageContainer.setAttribute('style', `
             display: flex;
             align-items: center;
             height: 3rem;
+            margin-top: 1rem;
         `);
-        
+
         authorName.setAttribute('style', `
             font-weight: 600;
             padding: 0;
@@ -169,10 +172,10 @@ Apify.main(async () => {
         `);
 
         authorProfileImage.setAttribute('style', `
-            width: 4rem;
+            width: 3rem;
             border-radius: 50%;
             display: inline-block;
-            margin: 0 1rem 0 1rem;
+            margin: 1rem 1rem 0 0;
             padding: 0;
         `);
 
@@ -180,7 +183,7 @@ Apify.main(async () => {
             display: flex;
             white-space: nowrap;
             padding: 2rem 3.5rem;
-            margin-top: 1rem;
+            margin-top: 3rem;
             transition-property: background-color;
             transition-duration: 0.3s;
             transition-timing-function: ease-in-out;
@@ -190,11 +193,12 @@ Apify.main(async () => {
             font-weight: 500;
             align-items: center;
             cursor: pointer;
-            font-size: 2.5rem;
+            font-size: 2rem;
             width: auto;
             text-align: center;
             background: rgb(151, 215, 0) none repeat scroll 0% 0%;
             color: rgb(255, 255, 255);
+            box-shadow: rgba(0, 29, 93, 0.2) 8px 8px 12px -4px;
         `);
 
         buttonText.setAttribute('style', `
@@ -204,12 +208,11 @@ Apify.main(async () => {
         
         document.body.appendChild(backgroundContainer);
         backgroundContainer.append(imageContainer, actorDescriptionContainer, logo);
-        actorDescriptionContainer.append(actorTitleContainer, authorInfoContainer, tryButtonContainer);
-        actorTitleContainer.append(actorTitleText);
         imageContainer.append(actorImageCircle);
         actorImageCircle.append(actorCoverImage);
-        authorInfoContainer.append(actorCodeTitle, authorNameAndImageContainer);
-        authorNameAndImageContainer.append(authorName, authorProfileImage);
+        actorDescriptionContainer.append(actorTitleText, actorCodeTitle, tryButtonContainer);
+        actorCodeTitle.append(authorNameAndImageContainer);
+        authorNameAndImageContainer.append(authorProfileImage, authorName);
         tryButtonContainer.append(tryButton);
         tryButton.append(buttonText);
 
