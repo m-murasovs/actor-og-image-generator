@@ -147,7 +147,7 @@ Apify.main(async () => {
             font-weight: 600;
             margin: 15% 0 2rem 0;
             padding: 0;
-            line-height: 0.9;
+            line-height: 1;
         `);
 
         authorInfoContainer.setAttribute('style', `
@@ -177,7 +177,7 @@ Apify.main(async () => {
             width: 3rem;
             border-radius: 50%;
             display: inline-block;
-            margin: 1rem 1rem 0 0;
+            margin: 0 1rem 0 0;
             padding: 0;
         `);
 
