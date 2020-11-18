@@ -22,34 +22,34 @@ Apify.main(async () => {
     await detailPage.goto(input.actorUrl);
 
     //Grab the actor info
-    const actorTitle = await detailPage.evaluate(() => document.querySelector('.Text__H2-sc-1f839r4-1').innerText );
-    
-    const codeTitle = await detailPage.evaluate(() => document.querySelector('.xAtsI').innerText );
+    const actorTitle = await detailPage.evaluate(() => document.querySelector('[class^=Text__H2]').innerText);
 
-    const actorImageSrc = await detailPage.evaluate(() => document.querySelector('.Header__StyledImg-kpuar6-1').src );
+    const codeTitle = await detailPage.evaluate(() => document.querySelector('[class^=DetailHeaderTop] [class^=Text__Paragraph]').innerText);
 
-    const authorPictureAddress = await detailPage.evaluate(() => document.querySelector('.Content__AuthorWrap-sc-1r0kza0-1 > a > img').src );
+    const actorImageSrc = await detailPage.evaluate(() => document.querySelector('[class^=Header__StyledImg]').src);
 
-    const authorLink = await detailPage.evaluate(() => document.querySelector('.Content__AuthorWrap-sc-1r0kza0-1 > a').href );
+    const authorPictureAddress = await detailPage.evaluate(() => document.querySelector('[class^=Content__AuthorWrap] a img').src);
+
+    const authorLink = await detailPage.evaluate(() => document.querySelector('[class^=Content__AuthorWrap] a').href);
 
     // Navigate to author page to get full name
     const authorPage = await browser.newPage();
     log.info(`Navigating to author page.`);
     await authorPage.goto(authorLink);
-    const authorFullName = await authorPage.evaluate(() => document.querySelector('.Text__H2-sc-1f839r4-1').innerText );
+    const authorFullName = await authorPage.evaluate(() => document.querySelector('[class^=Text__H2]').innerText);
 
     // Generate HTML for the screenshot
     const resultPage = await browser.newPage();
-    
-    await resultPage.evaluate((actorTitle, codeTitle, actorImageSrc, authorPictureAddress, authorFullName) => { 
+
+    await resultPage.evaluate((actorTitle, codeTitle, actorImageSrc, authorPictureAddress, authorFullName) => {
         // Import CSS
-        var head = document.getElementsByTagName('HEAD')[0];  
-        var link = document.createElement('link'); 
+        var head = document.getElementsByTagName('HEAD')[0];
+        var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
         link.href = '/Graphik-Regular.otf';
         head.appendChild(link);
-        
+
         // Create the elements
         const backgroundContainer = document.createElement('div');
 
@@ -61,12 +61,12 @@ Apify.main(async () => {
         const actorImageCircle = document.createElement('span');
         const actorCoverImage = document.createElement('img');
         actorCoverImage.src = actorImageSrc;
-        
+
         const actorDescriptionContainer = document.createElement('div');
         const actorTitleContainer = document.createElement('div');
         const actorTitleText = document.createElement('h1');
         actorTitleText.innerText = actorTitle;
-        
+
         const authorInfoContainer = document.createElement('div');
         const actorCodeTitle = document.createElement('div');
         const authorNameAndImageContainer = document.createElement('span');
@@ -75,14 +75,14 @@ Apify.main(async () => {
         actorCodeTitle.innerText = codeTitle;
         authorProfileImage.src = authorPictureAddress;
         authorName.innerText = authorFullName;
-        
+
         const tryButtonContainer = document.createElement('div');
         const tryButton = document.createElement('button');
         const buttonText = document.createElement('span');
         buttonText.innerText = 'Try for free';
         // Add SVG triangle code
         tryButton.innerHTML = '<svg viewBox="0 0 448 512" width="0.7em" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="sc-AxjAm fepPFp"><path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path></svg>';
-        
+
         // Set styles for the elements
         document.body.setAttribute('style', `
             overflow: hidden;
@@ -207,7 +207,7 @@ Apify.main(async () => {
             padding: 0;
             margin: 0 0 0 0.5rem;
         `);
-        
+
         document.body.appendChild(backgroundContainer);
         backgroundContainer.append(imageContainer, actorDescriptionContainer, logo);
         imageContainer.append(actorImageCircle);
@@ -218,7 +218,7 @@ Apify.main(async () => {
         tryButtonContainer.append(tryButton);
         tryButton.append(buttonText);
 
-    }, 
+    },
         actorTitle,
         codeTitle,
         actorImageSrc,
