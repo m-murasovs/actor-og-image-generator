@@ -226,6 +226,8 @@ Apify.main(async () => {
         authorFullName
     );
 
+    await Apify.utils.sleep(4000)
+
     const screenshot = await resultPage.screenshot()
 
     // Capture the screenshot
