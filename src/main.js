@@ -1,4 +1,7 @@
 const Apify = require('apify');
+const imagemin = require('imagemin')
+const imageminPngquant = require('imagemin-pngquant');
+const imageminJpegtran = require('imagemin-jpegtran');
 const { utils: { log } } = Apify;
 
 Apify.main(async () => {
@@ -47,7 +50,7 @@ Apify.main(async () => {
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = '/Graphik-Regular.otf';
+        link.href = 'https://apify.com/fonts/Graphik-Bold-Web.woff2';
         head.appendChild(link);
 
         // Create the elements
@@ -226,9 +229,17 @@ Apify.main(async () => {
         authorFullName
     );
 
-    await Apify.utils.sleep(4000)
+    const screenshot = await resultPage.screenshot({
+        type: input.type
+    })
 
-    const screenshot = await resultPage.screenshot()
+    // Optimize image
+    const imagminPlugins = input.type === 'png'
+        ? [imageminPngquant({ quality: [0.8, 0.95] })]
+        : [imageminJpegtran()];
+    const image = await imagemin.buffer(screenshot, {
+        plugins: imagminPlugins,
+    })
 
     // Capture the screenshot
     log.info('Capturing screenshot.');
@@ -236,7 +247,7 @@ Apify.main(async () => {
     // Add a message to dataset to show that process was successful
     await Apify.pushData({ status: 'Success! The image is in the run\'s key-value store.' });
     // Save the screenshot to the default key-value store
-    await Apify.setValue('OUTPUT', screenshot, { contentType: `image/${input.type}` });
+    await Apify.setValue('OUTPUT', image, { contentType: `image/${input.type}` });
 
     // Close Puppeteer
     log.info('Done.');
