@@ -159,6 +159,7 @@ Apify.main(async () => {
 
         actorTitleText.setAttribute('style', `
             font-family: 'Graphik-bold', sans-serif;
+            font-weight: 700;
             font-size: 4.5rem;
             margin: 15% 0 2rem 0;
             padding: 0;
