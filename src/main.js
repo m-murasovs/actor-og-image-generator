@@ -4,7 +4,7 @@ const { utils: { log } } = Apify;
 
 Apify.main(async () => {
     const input = await Apify.getInput();
-
+    const { debug } = input;
     // Start the browser
     log.info('Opening the browser.');
     const browser = await Apify.launchPuppeteer();
@@ -45,11 +45,16 @@ Apify.main(async () => {
     await resultPage.evaluate((actorTitle, codeTitle, actorImageSrc, authorPictureAddress, authorFullName) => {
         // Import CSS
         const head = document.getElementsByTagName('HEAD')[0];
-        const link = document.createElement('link');
+        const styleCustom = document.createElement('style');
+        styleCustom.innerHTML = '@font-face {font-family: "Graphik" ;src: url("https://apify.com/fonts/Graphik-Bold-Web.woff2"); /*URL to font*/}';
+        head.append(styleCustom);
+
+        // Old version of appending the font
+        /*        const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'https://apify-uploads-prod.s3.amazonaws.com/4ebbbc57-b9a5-4b9d-8364-efb6c1299620_Graphik-Regular.otf';
-        head.appendChild(link);
+        link.href = 'https://apify.com/fonts/Graphik-Bold-Web.woff2';
+        head.appendChild(link); */
 
         // Create the elements
         const backgroundContainer = document.createElement('div');
@@ -100,7 +105,7 @@ Apify.main(async () => {
             grid-template-columns: 25% 75%;
             width: 100%;
             height: 100%;
-            font-family: Graphik, sans-serif;
+            font-family: 'Graphik', sans-serif;
             font-size: 2rem;
         `);
 
@@ -225,12 +230,16 @@ Apify.main(async () => {
     authorPictureAddress,
     authorFullName);
 
-    await Apify.utils.sleep(4000);
-    const pageHtml = await resultPage.evaluate(async () => {
-        return document.documentElement.innerHTML;
-    });
-
-    await Apify.setValue('testHtml', pageHtml, { contentType: 'text/html' });
+    if (debug) {
+        // slow down
+        await Apify.utils.sleep(1000);
+        await resultPage.evaluateHandle('document.fonts.ready');
+        // store html for debug
+        const pageHtml = await resultPage.evaluate(async () => {
+            return document.documentElement.innerHTML;
+        });
+        await Apify.setValue('testHtml', pageHtml, { contentType: 'text/html' });
+    }
 
     const screenshot = await resultPage.screenshot();
 
