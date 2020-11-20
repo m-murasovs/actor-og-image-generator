@@ -41,6 +41,12 @@
             "prefill": 2,
             "maximum": 5,
             "minimum": 1
+        },
+        "debug": {
+            "title": "Debug",
+            "type": "boolean",
+            "description": "In case you want to store the HTML and slow it down.",
+            "editor": "checkbox"
         }
     },
     "required": [
