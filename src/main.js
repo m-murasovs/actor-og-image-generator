@@ -161,6 +161,7 @@ Apify.main(async () => {
         actorCodeTitle.setAttribute('style', `
             padding: 0;
             margin: 3rem 0 1rem 0;
+            font-weight: 400;
         `);
 
         authorNameAndImageContainer.setAttribute('style', `
