@@ -47,7 +47,7 @@ Apify.main(async () => {
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = '/Graphik-Regular.otf';
+        link.href = 'https://apify.com/fonts/Graphik-Bold-Web.woff2';
         head.appendChild(link);
 
         // Create the elements
