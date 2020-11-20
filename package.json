@@ -3,7 +3,10 @@
 	"version": "0.0.1",
 	"description": "This is a boilerplate of an Apify actor.",
 	"dependencies": {
-		"apify": "^0.21.0"
+		"apify": "^0.21.0",
+		"imagemin": "^7.0.1",
+		"imagemin-jpegtran": "^7.0.0",
+		"imagemin-pngquant": "^9.0.1"
 	},
 	"devDependencies": {
 		"@apify/eslint-config": "0.1.0",
