@@ -10,7 +10,9 @@ Apify.main(async () => {
     const { debug } = input;
     // Start the browser
     log.info('Opening the browser.');
-    const browser = await Apify.launchPuppeteer();
+    const browser = await Apify.launchPuppeteer({
+        headless: true,
+    });
 
     // Open new tab in the browser
     const detailPage = await browser.newPage();
@@ -49,7 +51,11 @@ Apify.main(async () => {
         // Import CSS
         const head = document.getElementsByTagName('HEAD')[0];
         const styleCustom = document.createElement('style');
-        styleCustom.innerHTML = '@font-face {font-family: "Graphik" ;src: url("https://apify.com/fonts/Graphik-Bold-Web.woff2"); /*URL to font*/}';
+        styleCustomBold = '@font-face {font-family: "Graphik-bold" ;src: url("https://apify.com/fonts/Graphik-Bold-Web.woff2"); /*URL to font*/}';
+        head.append(styleCustom);
+        styleCustom.innerHTML = '@font-face {font-family: "Graphik-semibold" ;src: url("https://apify.com/fonts/Graphik-Semibold-Web.woff2"); /*URL to font*/}';
+        head.append(styleCustom);
+        styleCustom.innerHTML = '@font-face {font-family: "Graphik" ;src: url("https://apify.com/fonts/Graphik-Regular-Web.woff2"); /*URL to font*/}';
         head.append(styleCustom);
 
         // Old version of appending the font
@@ -152,8 +158,8 @@ Apify.main(async () => {
         `);
 
         actorTitleText.setAttribute('style', `
+            font-family: 'Graphik-bold', sans-serif;
             font-size: 4.5rem;
-            font-weight: bold;
             margin: 15% 0 2rem 0;
             padding: 0;
             line-height: 1;
@@ -178,7 +184,7 @@ Apify.main(async () => {
         `);
 
         authorName.setAttribute('style', `
-            font-weight: 600;
+            font-family: 'Graphik-semibold', sans-serif;
             padding: 0;
             margin: 0;
         `);
@@ -228,11 +234,11 @@ Apify.main(async () => {
         tryButtonContainer.append(tryButton);
         tryButton.append(buttonText);
     },
-    actorTitle,
-    codeTitle,
-    actorImageSrc,
-    authorPictureAddress,
-    authorFullName);
+        actorTitle,
+        codeTitle,
+        actorImageSrc,
+        authorPictureAddress,
+        authorFullName);
 
     const screenshot = await resultPage.screenshot({
         type: input.type,
