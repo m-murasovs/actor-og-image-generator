@@ -186,6 +186,7 @@ Apify.main(async () => {
 
         authorName.setAttribute('style', `
             font-family: 'Graphik-semibold', sans-serif;
+            font-weight: 600;
             padding: 0;
             margin: 0;
         `);
