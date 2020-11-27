@@ -25,9 +25,7 @@ Apify.main(async () => {
 
     // Navigate to the URL
     log.info(`Navigating to ${input.actorUrl}.`);
-    await detailPage.goto(input.actorUrl);
-
-    await detailPage.waitFor(3000);
+    await detailPage.goto(input.actorUrl, { waitUntil: 'networkidle0' });
 
     // Grab the actor info
     const actorTitle = await detailPage.evaluate(() => document.querySelector('[class^=Text__H2]').innerText);
