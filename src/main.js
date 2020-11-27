@@ -27,7 +27,7 @@ Apify.main(async () => {
     log.info(`Navigating to ${input.actorUrl}.`);
     await detailPage.goto(input.actorUrl);
 
-    await detailPage.waitFor(2000);
+    await detailPage.waitFor(3000);
 
     // Grab the actor info
     const actorTitle = await detailPage.evaluate(() => document.querySelector('[class^=Text__H2]').innerText);
@@ -53,16 +53,11 @@ Apify.main(async () => {
         // Import CSS
         const head = document.getElementsByTagName('HEAD')[0];
         const styleCustom = document.createElement('style');
-        styleCustom.innerHTML = '@font-face {font-family: "Graphik-bold";'
-            + 'src: url("https://apify.com/fonts/Graphik-Bold-Web.woff2")'
-            + 'url("Graphik-Bold-Web.woff2") format("woff2"),'
-            + 'url("Graphik-Bold-Web.woff") format("woff");'
-            + 'font-weight: 900;}';
+        styleCustom.innerHTML = '@font-face {font-family: "Graphik-bold" ;src: url("https://apify.com/fonts/Graphik-Bold-Web.woff2"); /*URL to font*/}';
         head.append(styleCustom);
-        styleCustom.innerHTML = '@font-face {font-family: "Graphik-semibold";'
-            + 'src: url("https://apify.com/fonts/Graphik-Semibold-Web.woff2");}';
+        styleCustom.innerHTML = '@font-face {font-family: "Graphik-semibold" ;src: url("https://apify.com/fonts/Graphik-Semibold-Web.woff2"); /*URL to font*/}';
         head.append(styleCustom);
-        styleCustom.innerHTML = '@font-face {font-family: "Graphik";src: url("https://apify.com/fonts/Graphik-Regular-Web.woff2");}';
+        styleCustom.innerHTML = '@font-face {font-family: "Graphik" ;src: url("https://apify.com/fonts/Graphik-Regular-Web.woff2"); /*URL to font*/}';
         head.append(styleCustom);
 
         // Old version of appending the font
