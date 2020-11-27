@@ -52,8 +52,8 @@ Apify.main(async () => {
         const head = document.getElementsByTagName('HEAD')[0];
         const styleCustom = document.createElement('style');
         styleCustom.innerHTML = '@font-face {font-family: "Graphik-bold" ;'
-            + 'src: url("https://apify.com/fonts/Graphik-Bold-Web.woff2"); format("woff2")}'
-            + 'font-weight: 700; font-style: normal; font-stretch: normal;';
+            + 'src: url("https://apify.com/fonts/Graphik-Bold-Web.woff2") format("woff2");'
+            + 'font-weight: 700; font-style: normal; font-stretch: normal;}';
         head.append(styleCustom);
 
         // Old version of appending the font
