@@ -56,13 +56,6 @@ Apify.main(async () => {
             + 'font-weight: 700; font-style: normal; font-stretch: normal;}';
         head.append(styleCustom);
 
-        // Old version of appending the font
-        /*        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = '/Graphik-Regular.otf';
-        head.appendChild(link); */
-
         // Create the elements
         const backgroundContainer = document.createElement('div');
 
@@ -83,9 +76,11 @@ Apify.main(async () => {
         const authorInfoContainer = document.createElement('div');
         const actorCodeTitle = document.createElement('div');
         const authorNameAndImageContainer = document.createElement('span');
+        const byAuthorText = document.createElement('p');
         const authorProfileImage = document.createElement('img');
         const authorName = document.createElement('p');
         actorCodeTitle.innerText = codeTitle;
+        byAuthorText.innerText = 'By';
         authorProfileImage.src = authorPictureAddress;
         authorName.innerText = authorFullName;
 
@@ -94,7 +89,9 @@ Apify.main(async () => {
         const buttonText = document.createElement('span');
         buttonText.innerText = 'Try for free';
         // Add SVG triangle code
-        tryButton.innerHTML = '<svg viewBox="0 0 448 512" width="0.7em" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="sc-AxjAm fepPFp"><path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path></svg>';
+        tryButton.innerHTML = '<svg viewBox="0 0 448 512" width="0.7em" aria-hidden="true" focusable="false" '
+            + 'fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="sc-AxjAm fepPFp"><path fill="currentColor" '
+            + 'd="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path></svg>';
 
         // Set styles for the elements
         document.body.setAttribute('style', `
@@ -118,9 +115,9 @@ Apify.main(async () => {
 
         logo.setAttribute('style', `
             position: absolute;
-            right: 6rem;
+            right: 7rem;
             bottom: 3rem;
-            transform: scale(1.3); 
+            transform: scale(2); 
         `);
 
         imageContainer.setAttribute('style', `
@@ -181,21 +178,26 @@ Apify.main(async () => {
             display: flex;
             align-items: center;
             height: 3rem;
-            margin-top: 1rem;
+            margin-top: 2.5rem;
+        `);
+
+        byAuthorText.setAttribute('style', `
+            padding: 0 0.5rem 0 0;
+            margin: 0;
         `);
 
         authorName.setAttribute('style', `
             font-family: 'Graphik-semibold', sans-serif;
             font-weight: 600;
             padding: 0;
-            margin: 0;
+            margin: 0 1rem 0 0;
         `);
 
         authorProfileImage.setAttribute('style', `
-            width: 3rem;
+            width: 5.8rem;
             border-radius: 50%;
             display: inline-block;
-            margin: 0 1rem 0 0;
+            margin: 0;
             padding: 0;
         `);
 
@@ -232,7 +234,7 @@ Apify.main(async () => {
         actorImageCircle.append(actorCoverImage);
         actorDescriptionContainer.append(actorTitleText, actorCodeTitle, tryButtonContainer);
         actorCodeTitle.append(authorNameAndImageContainer);
-        authorNameAndImageContainer.append(authorProfileImage, authorName);
+        authorNameAndImageContainer.append(byAuthorText, authorName, authorProfileImage);
         tryButtonContainer.append(tryButton);
         tryButton.append(buttonText);
     },
