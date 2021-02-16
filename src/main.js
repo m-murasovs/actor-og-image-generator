@@ -38,7 +38,7 @@ Apify.main(async () => {
 
     const authorLink = await detailPage.evaluate(() => document.querySelector('[class^=Content__AuthorWrap] a').href);
 
-    // Navigate to author page to get full name
+    // Navigate to the author page to get full name
     const authorPage = await browser.newPage();
     log.info('Navigating to author page.');
     await authorPage.goto(authorLink);
