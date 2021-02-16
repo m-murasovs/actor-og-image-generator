@@ -11,6 +11,34 @@
             "editor": "textfield",
             "prefill": "https://apify.com/apify/screenshot-url"
         },
+        "actorTitle": {
+            "title": "Actor title",
+            "type": "string",
+            "description": "The actor's full name, preferably in Title Case",
+            "editor": "textfield",
+            "prefill": "Website Screenshot Generator"
+        },
+        "actorImageUrl": {
+            "title": "Actor image url",
+            "type": "string",
+            "description": "A link to the actor's image",
+            "editor": "textfield",
+            "prefill": "https://apifyusercontent.com/6c9248ca97a00562ae9a3f5431e3767dbfd6794f/68747470733a2f2f61706966792d696d6167652d75706c6f6164732d70726f642e73332e616d617a6f6e6177732e636f6d2f724743796f614b544b68794d69695476532f33364635577164706175525744534e79392d73637265656e73686f745f646f776e6c6f61642d30312e706e67"
+        },
+        "authorFullName": {
+            "title": "Author full name",
+            "type": "string",
+            "description": "The author's full name",
+            "editor": "textfield",
+            "prefill": "Apify"
+        },
+        "authorImageUrl": {
+            "title": "Author image url",
+            "type": "string",
+            "description": "A link to the author's profile image",
+            "editor": "textfield",
+            "prefill": "https://apifyusercontent.com/6c4baf19c78267d40118879f3ff63e5e235021b6/68747470733a2f2f61706966792d696d6167652d75706c6f6164732d70726f642e73332e616d617a6f6e6177732e636f6d2f6175725052544834374b686d6961504e4a2f77703265485759395772354b77375774542d3436313038342e6a7067"
+        },
         "type": {
             "title": "Image format",
             "type": "string",
@@ -27,21 +55,6 @@
                 "PNG"
             ]
         },
-        "omitBackground": {
-            "title": "Omit background",
-            "type": "boolean",
-            "description": "Ignore the screenshot's background",
-            "editor": "checkbox"
-        },
-        "scale": {
-            "title": "Image scale",
-            "type": "integer",
-            "description": "Depending on the size of image you need, adjust the scale",
-            "editor": "number",
-            "prefill": 2,
-            "maximum": 5,
-            "minimum": 1
-        },
         "debug": {
             "title": "Debug",
             "type": "boolean",
@@ -51,6 +64,10 @@
     },
     "required": [
         "actorUrl",
+        "actorTitle",
+        "actorImageUrl",
+        "authorFullName",
+        "authorImageUrl",
         "type"
     ]
 }
