@@ -215,6 +215,8 @@ Apify.main(async () => {
         authorImageUrl,
         authorFullName);
 
+    await resultPage.waitFor(3000);
+
     const screenshot = await resultPage.screenshot({
         type,
     });
