@@ -6,48 +6,19 @@ const imageminJpegtran = require('imagemin-jpegtran');
 const { utils: { log } } = Apify;
 
 Apify.main(async () => {
-    const input = await Apify.getInput();
-    const { debug } = input;
+    const { actorUrl, actorTitle, actorImageUrl, authorFullName, authorImageUrl, debug, type } = await Apify.getInput();
+    const codeTitle = actorUrl.substr(actorUrl.indexOf('.com/') + 5);
+
     // Start the browser
     log.info('Opening the browser.');
     const browser = await Apify.launchPuppeteer({
         headless: true,
     });
 
-    // Open new tab in the browser
-    const detailPage = await browser.newPage();
-
-    await detailPage.setViewport({
-        width: 1920,
-        height: 1080,
-        deviceScaleFactor: input.scale,
-    });
-
-    // Navigate to the URL
-    log.info(`Navigating to ${input.actorUrl}.`);
-    await detailPage.goto(input.actorUrl, { waitUntil: 'networkidle0' });
-
-    // Grab the actor info
-    const actorTitle = await detailPage.evaluate(() => document.querySelector('[class^=Text__H2]').innerText);
-
-    const codeTitle = await detailPage.evaluate(() => document.querySelector('[class^=DetailHeaderTop] [class^=Text__Paragraph]').innerText);
-
-    const actorImageSrc = await detailPage.evaluate(() => document.querySelector('[class^=Header__StyledImg]').src);
-
-    const authorPictureAddress = await detailPage.evaluate(() => document.querySelector('[class^=Content__AuthorWrap] a img').src);
-
-    const authorLink = await detailPage.evaluate(() => document.querySelector('[class^=Content__AuthorWrap] a').href);
-
-    // Navigate to author page to get full name
-    const authorPage = await browser.newPage();
-    log.info('Navigating to author page.');
-    await authorPage.goto(authorLink);
-    const authorFullName = await authorPage.evaluate(() => document.querySelector('[class^=Text__H2]').innerText);
-
     // Generate HTML for the screenshot
     const resultPage = await browser.newPage();
 
-    await resultPage.evaluate((actorTitle, codeTitle, actorImageSrc, authorPictureAddress, authorFullName) => {
+    await resultPage.evaluate((actorImageUrl, actorTitle, codeTitle, authorImageUrl, authorFullName, debug) => {
         // Import CSS
         const head = document.getElementsByTagName('HEAD')[0];
         const styleCustom = document.createElement('style');
@@ -66,7 +37,7 @@ Apify.main(async () => {
         const imageContainer = document.createElement('div');
         const actorImageCircle = document.createElement('span');
         const actorCoverImage = document.createElement('img');
-        actorCoverImage.src = actorImageSrc;
+        actorCoverImage.src = actorImageUrl;
 
         const actorDescriptionContainer = document.createElement('div');
         const actorTitleContainer = document.createElement('div');
@@ -81,7 +52,7 @@ Apify.main(async () => {
         const authorName = document.createElement('p');
         actorCodeTitle.innerText = codeTitle;
         byAuthorText.innerText = 'By';
-        authorProfileImage.src = authorPictureAddress;
+        authorProfileImage.src = authorImageUrl;
         authorName.innerText = authorFullName;
 
         const tryButtonContainer = document.createElement('div');
@@ -238,14 +209,14 @@ Apify.main(async () => {
         tryButtonContainer.append(tryButton);
         tryButton.append(buttonText);
     },
+        actorImageUrl,
         actorTitle,
         codeTitle,
-        actorImageSrc,
-        authorPictureAddress,
+        authorImageUrl,
         authorFullName);
 
     const screenshot = await resultPage.screenshot({
-        type: input.type,
+        type,
     });
     if (debug) {
         // slow down
@@ -259,7 +230,7 @@ Apify.main(async () => {
     }
 
     // Optimize image
-    const imagminPlugins = input.type === 'png'
+    const imagminPlugins = type === 'png'
         ? [imageminPngquant({ quality: [0.8, 0.95] })]
         : [imageminJpegtran()];
     const image = await imagemin.buffer(screenshot, {
@@ -272,7 +243,7 @@ Apify.main(async () => {
     // Add a message to dataset to show that process was successful
     await Apify.pushData({ status: 'Success! The image is in the run\'s key-value store.' });
     // Save the screenshot to the default key-value store
-    await Apify.setValue('OUTPUT', image, { contentType: `image/${input.type}` });
+    await Apify.setValue('OUTPUT', image, { contentType: `image/${type}` });
 
     // Close Puppeteer
     log.info('Done.');
