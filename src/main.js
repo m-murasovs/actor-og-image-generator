@@ -53,6 +53,8 @@ Apify.main(async () => {
         actorCodeTitle.innerText = codeTitle;
         byAuthorText.innerText = 'By';
         authorProfileImage.src = authorImageUrl;
+        authorProfileImage.className = 'authorImage';
+
         authorName.innerText = authorFullName;
 
         const tryButtonContainer = document.createElement('div');
@@ -215,11 +217,13 @@ Apify.main(async () => {
         authorImageUrl,
         authorFullName);
 
-    await resultPage.waitFor(3000);
+    const imagesHaveLoaded = () => { return Array.from(document.images).every((i) => i.complete); };
+    await resultPage.waitForFunction(imagesHaveLoaded, { timeout: 5000 });
 
     const screenshot = await resultPage.screenshot({
         type,
     });
+
     if (debug) {
         // slow down
         await Apify.utils.sleep(1000);
