@@ -21,11 +21,17 @@ Apify.main(async () => {
     await resultPage.evaluate((actorImageUrl, actorTitle, codeTitle, authorImageUrl, authorFullName, debug) => {
         // Import CSS
         const head = document.getElementsByTagName('HEAD')[0];
+
         const styleCustom = document.createElement('style');
         styleCustom.innerHTML = '@font-face {font-family: "Graphik-bold" ;'
             + 'src: url("https://apify.com/fonts/Graphik-Bold-Web.woff2") format("woff2");'
             + 'font-weight: 700; font-style: normal; font-stretch: normal;}';
+
+        const fontPreLoad = document.createElement('link');
+        fontPreLoad.innerHTML = '<link rel="preload" href="https://apify.com/fonts/Graphik-Bold-Web.woff2" as="font" crossorigin="anonymous" />';
+
         head.append(styleCustom);
+        head.append(fontPreLoad);
 
         // Create the elements
         const backgroundContainer = document.createElement('div');
