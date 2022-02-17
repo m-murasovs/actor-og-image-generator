@@ -64,9 +64,7 @@
     },
     "required": [
         "actorUrl",
-        "actorTitle",
         "actorImageUrl",
-        "authorFullName",
         "authorImageUrl",
         "type"
     ]
