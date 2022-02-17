@@ -48,7 +48,7 @@ Apify.main(async () => {
         const actorDescriptionContainer = document.createElement('div');
         const actorTitleContainer = document.createElement('div');
         const actorTitleText = document.createElement('h1');
-        actorTitleText.innerText = actorTitle || "Actor";
+        actorTitleText.innerText = actorTitle;
 
         const authorInfoContainer = document.createElement('div');
         const actorCodeTitle = document.createElement('div');
@@ -61,7 +61,7 @@ Apify.main(async () => {
         authorProfileImage.src = authorImageUrl;
         authorProfileImage.className = 'authorImage';
 
-        authorName.innerText = authorFullName || "Apify user";
+        authorName.innerText = authorFullName;
 
         const tryButtonContainer = document.createElement('div');
         const tryButton = document.createElement('button');

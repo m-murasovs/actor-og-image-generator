@@ -13,6 +13,7 @@
         },
         "actorTitle": {
             "title": "Actor title",
+            "default": "Actor",
             "type": "string",
             "description": "The actor's full name, preferably in Title Case",
             "editor": "textfield",
@@ -27,6 +28,7 @@
         },
         "authorFullName": {
             "title": "Author full name",
+            "default": "Apify user",
             "type": "string",
             "description": "The author's full name",
             "editor": "textfield",
