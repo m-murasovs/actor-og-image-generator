@@ -23,12 +23,13 @@ Apify.main(async () => {
         const head = document.getElementsByTagName('HEAD')[0];
 
         const styleCustom = document.createElement('style');
-        styleCustom.innerHTML = '@font-face {font-family: "Graphik-bold" ;'
-            + 'src: url("https://apify.com/fonts/Graphik-Bold-Web.woff2") format("woff2");'
+        styleCustom.innerHTML = '@font-face {font-family: "Lota Grotesque";'
+            + 'src: url("https://apify.com/fonts/LotaGrotesque-SemiBold.woff2") format("woff2");'
             + 'font-weight: 700; font-style: normal; font-stretch: normal;}';
 
         const fontPreLoad = document.createElement('link');
-        fontPreLoad.innerHTML = '<link rel="preload" href="https://apify.com/fonts/Graphik-Bold-Web.woff2" as="font" crossorigin="anonymous" />';
+        fontPreLoad.innerHTML = '<link rel="preload"'
+            + ' href="https://apify.com/fonts/LotaGrotesque-SemiBold.woff2" as="font" crossorigin="anonymous" />';
 
         head.append(styleCustom);
         head.append(fontPreLoad);
@@ -88,7 +89,7 @@ Apify.main(async () => {
             grid-template-columns: 25% 75%;
             width: 100%;
             height: 100%;
-            font-family: 'Graphik', sans-serif;
+            font-family: sans-serif;
             font-size: 2rem;
         `);
 
@@ -132,12 +133,12 @@ Apify.main(async () => {
         `);
 
         actorTitleText.setAttribute('style', `
-            font-family: 'Graphik-bold';
+            font-family: 'Lota Grotesque';
             font-weight: 700;
             font-style: normal;
             font-stretch: normal;
             font-size: 4.5rem;
-            margin: 15% 0 2rem 0;
+            margin: 15% 4rem 2rem 0;
             padding: 0;
             line-height: 1;
         `);
@@ -166,7 +167,7 @@ Apify.main(async () => {
         `);
 
         authorName.setAttribute('style', `
-            font-family: 'Graphik-semibold', sans-serif;
+            font-family: 'Lota Grotesque', sans-serif;
             font-weight: 600;
             padding: 0;
             margin: 0 1rem 0 0;
