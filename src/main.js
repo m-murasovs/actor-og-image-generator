@@ -133,7 +133,7 @@ Apify.main(async () => {
         `);
 
         actorTitleText.setAttribute('style', `
-            font-family: 'Lota Grotesque';
+            font-family: 'Lota Grotesque', sans-serif;
             font-weight: 700;
             font-style: normal;
             font-stretch: normal;
