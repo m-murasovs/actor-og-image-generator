@@ -4,19 +4,27 @@ This actor is for sharing Apify actors on social media.
 
 ## How it works
 
-1. Scrapes actor images and information.
+1. Takes as input all the information required for the OG image
+    - actor URL
+    - actor title
+    - actor image URL
+    - author full name
+    - author image URL
+    - image format
 
-2. Scrapes the author's picture and full name. 
+3. Generates an HTML page and lays out the information in a card format
 
-3. Generates an HTML page and lays out the information in a nice card format.
-
-4. Takes a screenshot and saves it in JPEG or PNG format.
+4. Takes a screenshot and saves it in JPEG or PNG format
 
 ## Input 
 
-Just enter the actor's URL into the input.
-
-You can pick JPEG or PNG format.
+Add the information:
+    - actor URL
+    - actor title
+    - actor image URL
+    - author full name
+    - author image URL
+    - image format - you can pick JPEG or PNG format.
 
 Depending on the size of image you need, adjust the image scale accordingly.
 
